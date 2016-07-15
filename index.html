@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="AppUI - Frontend Template & UI Framework" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>ยินดีต้อนรับสู่ระบบบันทึกการให้คำปรึกษางานวิจัย : E-Consult service system</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="assets/img/favicons/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicons/favicon.ico" />
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Kanit:400,300,200,500&subset=thai,latin' rel='stylesheet' type='text/css'>
+
+    <!-- AppUI CSS stylesheets -->
+    <link rel="stylesheet" id="css-font-awesome" href="assets/css/font-awesome.css" />
+    <link rel="stylesheet" id="css-ionicons" href="assets/css/ionicons.css" />
+    <link rel="stylesheet" id="css-bootstrap" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" id="css-app" href="assets/css/app.css" />
+    <link rel="stylesheet" id="css-app-custom" href="assets/css/app-custom.css" />
+    <!-- <link rel="stylesheet" id="css-xpl-custom" href="library/xpl/css/xpl.css" > -->
+    <!-- End Stylesheets -->
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4 text-center" style="padding-top: 20px;" id="loginPane">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h1><img src="images/logo.png" alt="" /></h1>
+
+              <!-- <h3>เข้าสู่ระบบ</h3> -->
+              <div class="loading" style="display:none; padding-top: 50px; padding-bottom: 40px;">
+                <div id="pg" class="progress active" style="padding: 0px; margin: 0px;">
+                    <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel">0%</span></div>
+                </div>
+              </div>
+              <div class="login">
+                <form class="js-validation-login form-horizontal" style="padding-top: 20px;" onsubmit="return false;" autocomplete="off">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="form-material">
+                            <input class="form-control" type="text" id="txt-username" name="txt-username" placeholder="กรอกชื่อผบัญชีผู้ใช้หรืออีเมล..." />
+                            <label for="txtUsername" style="color: #fff;">ชื่อบัญชีผู้ใช้</label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="form-material">
+                            <input class="form-control" type="password" id="txt-password" name="txt-password" placeholder="กรอกรหัสผ่าน..." />
+                            <label for="txtPassword">รหัสผ่าน</label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <button type="submit" class="btn btn-app-teal btn-block">Login</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="text-center" style="padding-top: 10px;">
+                  ลืมรหัสผ่าน? | ลงทะเบียนใช้งานระบบ
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End row -->
+
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1" style="font-size: 0.8em; padding-top: 20px; padding-bottom: 10px;">
+              <!-- <hr> -->
+              &copy; <span class="js-year-copy"></span> IT Office, Epidemiology Unit<br>
+
+            </div>
+            <div class="col-sm-10 col-sm-offset-1" style="font-size: 0.8em;">
+              <a href="#">ข้อตกลงการใช้งาน</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
+    <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/core/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/core/jquery.scrollLock.min.js"></script>
+    <script src="assets/js/core/jquery.placeholder.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app-custom.js"></script>
+
+    <!-- Page JS Plugins -->
+    <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+
+    <!-- Include JS custom code -->
+    <script src="dist/page/login/forms_validation.js"></script>
+    <script src="dist/page/login/authen.js"></script>
+
+  </body>
+</html>

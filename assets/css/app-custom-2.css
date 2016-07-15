@@ -1,0 +1,32 @@
+/*# sourceMappingURL=maps/app-custom.css.map */
+.radioDiv{
+  padding-bottom: 10px;
+}
+
+.has-error-label{
+  color: red;
+}
+
+.has-radio-error{
+  border: solid;
+  border-width: 0px 0px 3px 0px;
+  border-color: red;
+  /*color: red;*/
+}
+.font-bold-500{
+  font-weight: 500;
+}
+
+body, h1, h2, h3, h4{
+  font-family: 'Kanit', sans-serif;
+  /*background: #444;*/
+  /*color: #fff;*/
+}
+
+.form-control{
+  /*color: #fff;*/
+}
+.form-material > label{
+  /*color: #fff;*/
+  font-weight: 400;
+}
