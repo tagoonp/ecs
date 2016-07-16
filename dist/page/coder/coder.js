@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var jqxhr = $.post( "../core/acc-log.php", { pages : 'coder/register.php' },function() {});
+  var jqxhr = $.post( "../core/acc-log.php", { pages : 'coder/index.php' },function() {});
 
   var jqxhr2 = $.post( "../core/get-department.php", function(result) {
     for (var i = 0; i < result.length; i++) {
@@ -107,4 +107,8 @@ function iniInterval(){
       loadBar($i);
     }
   },1000);
+}
+
+function redirect(url){
+  window.location = url;
 }
