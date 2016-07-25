@@ -6,6 +6,10 @@ include "../core/checksession.php";
 $db = new database();
 $db->connect();
 
+if(!isset($_GET['pi_id'])){
+  header('Location: error-404.html');
+  exit();
+}
 
 ?>
 <!DOCTYPE html>
@@ -127,11 +131,20 @@ $db->connect();
                                     </div>
                                   </div>
                                   <div class="register">
-                                    <form class="js-validation-material form-horizontal m-t-sm" action="base_forms_samples.html" method="post" onsubmit="return false;">
-                                      <div class="form-group">
+                                    <form class="js-validation-material-project-regist form-horizontal m-t-sm" action="controller/insert-project.php" method="post" >
+                                      <div class="form-group" style="display:none;">
                                         <div class="col-xs-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-pi-id" name="txt-pi-id" placeholder="Enter name or project title..." value="<?php print $_GET['pi_id'];?>">
+                                                <input class="form-control" type="text" id="txt-pi-id" name="txt-pi-id" readonly placeholder="Enter name or project title..." value="<?php print $_GET['pi_id'];?>">
+                                                <label for="register6-email" style="font-weight: 500; font-size: 1.1em;">Project title <span style="color:red;">**</span></label>
+                                            </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group" style="padding-top: 20px;">
+                                        <div class="col-xs-12">
+                                            <div class="form-material">
+                                                <input class="form-control" type="text" id="txt-projecttitle" name="txt-projecttitle" placeholder="Enter name or project title...">
                                                 <label for="register6-email" style="font-weight: 500; font-size: 1.1em;">Project title <span style="color:red;">**</span></label>
                                             </div>
                                         </div>
@@ -140,16 +153,7 @@ $db->connect();
                                       <div class="form-group">
                                         <div class="col-xs-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-phone" name="txt-phone" placeholder="Enter name or project title...">
-                                                <label for="register6-email" style="font-weight: 500; font-size: 1.1em;">Project title <span style="color:red;">**</span></label>
-                                            </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-phone" name="txt-phone" placeholder="Enter project's funding source...">
+                                                <input class="form-control" type="text" id="txt-fund" name="txt-fund" placeholder="Enter project's funding source...">
                                                 <label for="register6-email" style="font-weight: 500; font-size: 1.1em;">Funding source </label>
                                             </div>
                                         </div>
@@ -161,43 +165,43 @@ $db->connect();
                                         </div>
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Propersal Development
+                                                <input type="checkbox" name="cb1-1" value="1" /><span></span> Propersal Development
                                               </label>
                                         </div>
 
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Data Analysis
+                                                <input type="checkbox" name="cb1-2" value="1" /><span></span> Data Analysis
                                               </label>
                                         </div>
 
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Proof Reading
+                                                <input type="checkbox" name="cb1-3" value="1" /><span></span> Proof Reading
                                               </label>
                                         </div>
 
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Data Management
+                                                <input type="checkbox" name="cb1-4" value="1" /><span></span> Data Management
                                               </label>
                                         </div>
 
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Report writing
+                                                <input type="checkbox" name="cb1-5" value="1" /><span></span> Report writing
                                               </label>
                                         </div>
 
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Sample size
+                                                <input type="checkbox" name="cb1-6" id="cb1-6" value="1" /><span></span> Sample size
                                               </label>
                                         </div>
 
                                         <div class="col-xs-4">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox" /><span></span> Other
+                                                <input type="checkbox" name="cb1-7" value="1" /><span></span> Other
                                               </label>
                                         </div>
 
@@ -205,7 +209,7 @@ $db->connect();
                                           <div class="form-group">
                                             <div class="col-xs-12">
                                                 <div class="form-material">
-                                                    <input class="form-control" type="text" id="txt-phone" name="txt-phone" placeholder="Enter other service requested...">
+                                                    <input class="form-control" type="text" id="txt-cb1-otr" name="txt-cb1-otr" placeholder="Enter other service requested...">
                                                 </div>
                                             </div>
                                           </div>
@@ -218,31 +222,31 @@ $db->connect();
                                         </div>
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Part of on-ging research
+                                                <input type="checkbox" name="cb2-1" value="1" /><span></span> Part of on-ging research
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Resident's paper
+                                                <input type="checkbox"  name="cb2-2" value="1" /><span></span> Resident's paper
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> R2R project
+                                                <input type="checkbox"  name="cb2-3" value="1" /><span></span> R2R project
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> For promotion
+                                                <input type="checkbox"  name="cb2-4" value="1" /><span></span> For promotion
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Other
+                                                <input type="checkbox"  name="cb2-5" value="1" /><span></span> Other
                                               </label>
                                         </div>
 
@@ -250,7 +254,7 @@ $db->connect();
                                           <div class="form-group">
                                             <div class="col-xs-12">
                                                 <div class="form-material">
-                                                    <input class="form-control" type="text" id="txt-phone" name="txt-phone" placeholder="Enter other purpose...">
+                                                    <input class="form-control" type="text" id="txt-cb2-otr" name="txt-cb2-otr" placeholder="Enter other purpose...">
                                                 </div>
                                             </div>
                                           </div>
@@ -263,31 +267,31 @@ $db->connect();
                                         </div>
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Joint research
+                                                <input type="checkbox"  name="cb3-1" value="1" /><span></span> Joint research
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Authorship
+                                                <input type="checkbox"  name="cb3-2" value="1" /><span></span> Authorship
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Acknowledgement
+                                                <input type="checkbox"  name="cb3-3" value="1" /><span></span> Acknowledgement
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> On-time basis only
+                                                <input type="checkbox"  name="cb3-4" value="1" /><span></span> On-time basis only
                                               </label>
                                         </div>
 
                                         <div class="col-xs-6">
                                               <label class="css-input css-checkbox css-checkbox-info">
-                                                <input type="checkbox"  /><span></span> Other
+                                                <input type="checkbox"  name="cb3-5" value="1" /><span></span> Other
                                               </label>
                                         </div>
 
@@ -295,7 +299,7 @@ $db->connect();
                                           <div class="form-group">
                                             <div class="col-xs-12">
                                                 <div class="form-material">
-                                                    <input class="form-control" type="text" id="txt-phone" name="txt-phone" placeholder="Enter other involvement...">
+                                                    <input class="form-control" type="text" id="txt-cb3-otr" name="txt-cb3-otr" placeholder="Enter other involvement...">
                                                 </div>
                                             </div>
                                           </div>
@@ -354,7 +358,7 @@ $db->connect();
         <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
         <!-- JQUERY CODE -->
         <script src="../dist/page/coder/coder.js" type="text/javascript"></script>
-        <script src="../dist/page/coder/reigter_project_validation.js"></script>
+        <script src="../dist/page/coder/register_project_validation.js"></script>
         <script>
             $(function()
             {

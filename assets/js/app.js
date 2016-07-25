@@ -612,6 +612,7 @@ var App = function() {
 		// 9 - Represents a numeric character (0-9)
 		// * - Represents an alphanumeric character (A-Z,a-z,0-9)
 		jQuery( '.js-masked-date' ).mask( '99/99/9999' );
+		jQuery( '.js-masked-time' ).mask( '99.99' );
 		jQuery( '.js-masked-date-dash' ).mask( '99-99-9999' );
 		jQuery( '.js-masked-phone' ).mask( '(999) 999-9999' );
 		jQuery( '.js-masked-phone-ext' ).mask( '(999) 999-9999? x99999' );

@@ -6,6 +6,10 @@ include "../core/checksession.php";
 $db = new database();
 $db->connect();
 
+if(!isset($_GET['pi_id'])){
+  header('Location: error-404.html');
+  exit();
+}
 
 ?>
 <!DOCTYPE html>
@@ -132,39 +136,35 @@ $db->connect();
                                 <thead>
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th>ชื่อ - นามสกุล</th>
-                                        <th class="hidden-xs">ภาควิชา</th>
-                                        <th class="hidden-xs w-20">หมายเลขโทรศัพท์</th>
+                                        <th>Project title</th>
+                                        <th class="hidden-xs">Register date</th>
+                                        <th>Evaluation status</th>
                                         <th class="text-center" style="width: 120px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   <?php
-                                  $strSQL = "SELECT * FROM trs_useraccount a inner join trs_institute b on a.acc_instituteid=b.inst_id
-                                            left join trs_prefix c on a.acc_prefixid=c.prefix_id
-                                            WHERE a.acc_type = '4'
-                                            ORDER BY a.acc_regdate DESC";
-                                  $resultPI = $db->select($strSQL,false,true);
-                                  if($resultPI){
+                                  $strSQL = "SELECT * FROM trs_research
+                                            WHERE pi_id = '".$_GET['pi_id']."'
+                                            ORDER BY 	tr_reg_date DESC";
+                                  $resultProject = $db->select($strSQL,false,true);
+                                  if($resultProject){
                                     $c = 1;
-                                    foreach ($resultPI as $value) {
+                                    foreach ($resultProject as $value) {
                                       ?>
                                       <tr>
                                           <td class="text-center"><?php print $c; ?></td>
                                           <td class="font-500">
                                             <?php
-                                            if(($value['acc_prefixid']!='') || ($value['acc_prefixid']!=null)){
-                                              print $value['prefix_name'];
-                                            }
-                                            print $value['acc_fname']." ".$value['acc_lname'];
+                                            print $value['rs_title'];
                                             ?>
                                           </td>
-                                          <td class="hidden-xs"><?php print $value['inst_name']; ?></td>
-                                          <td class="hidden-xs"><?php print $value['acc_phone']; ?></td>
+                                          <td class="hidden-xs"><?php print $value['tr_reg_date']; ?></td>
+                                          <td class="hidden-xs">No</td>
                                           <td class="text-center">
                                               <div class="btn-group">
                                                   <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="ion-edit"></i></button>
-                                                  <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Schedule" onclick="redirect('schedule.php?pi_id=<?php print $value['acc_id'];?>')"><i class="ion-calendar"></i></button>
+                                                  <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Schedule" onclick="redirect('schedule.php?pi_id=<?php print $value['rs_id'];?>')"><i class="ion-calendar"></i></button>
                                                   <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
                                               </div>
                                           </td>
