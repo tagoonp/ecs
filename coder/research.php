@@ -144,7 +144,8 @@ if(!isset($_GET['pi_id'])){
                                       <div class="form-group" style="padding-top: 20px;">
                                         <div class="col-xs-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-projecttitle" name="txt-projecttitle" placeholder="Enter name or project title...">
+                                                <!-- <input class="form-control" type="text" id="txt-projecttitle" name="txt-projecttitle" placeholder="Enter name or project title..."> -->
+                                                <textarea class="form-control"  rows="4" cols="40" id="txt-projecttitle" name="txt-projecttitle" placeholder="Enter name or project title..."></textarea>
                                                 <label for="register6-email" style="font-weight: 500; font-size: 1.1em;">Project title <span style="color:red;">**</span></label>
                                             </div>
                                         </div>

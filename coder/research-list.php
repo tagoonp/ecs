@@ -137,16 +137,16 @@ if(!isset($_GET['pi_id'])){
                                     <tr>
                                         <th class="text-center"></th>
                                         <th>Project title</th>
-                                        <th class="hidden-xs">Register date</th>
+                                        <!-- <th class="hidden-xs">Register date</th> -->
                                         <th>Evaluation status</th>
-                                        <th class="text-center" style="width: 120px;"></th>
+                                        <th class="text-center" style="width: 150px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   <?php
                                   $strSQL = "SELECT * FROM trs_research
-                                            WHERE pi_id = '".$_GET['pi_id']."'
-                                            ORDER BY 	tr_reg_date DESC";
+                                            WHERE re_pi_id = '".$_GET['pi_id']."'
+                                            ORDER BY 	rs_regdate DESC";
                                   $resultProject = $db->select($strSQL,false,true);
                                   if($resultProject){
                                     $c = 1;
@@ -156,10 +156,10 @@ if(!isset($_GET['pi_id'])){
                                           <td class="text-center"><?php print $c; ?></td>
                                           <td class="font-500">
                                             <?php
-                                            print $value['rs_title'];
+                                            print $value['rs_title']."<br>"."Register date: ".$value['rs_regdate'];
                                             ?>
                                           </td>
-                                          <td class="hidden-xs"><?php print $value['tr_reg_date']; ?></td>
+                                          <!-- <td class="hidden-xs"><?php //print $value['rs_regdate']; ?></td> -->
                                           <td class="hidden-xs">No</td>
                                           <td class="text-center">
                                               <div class="btn-group">

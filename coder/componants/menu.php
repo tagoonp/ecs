@@ -8,7 +8,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="register.php"><i class="ion-plus"></i> PI register</a>
+            <a href="register.php"><i class="ion-plus"></i> PI Register</a>
         </li>
 
         <li class="nav-item">
@@ -16,11 +16,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="register.php"><i class="ion-search"></i> Search PI</a>
-        </li>
-
-        <li class="nav-item">
-            <a href="register.php"><i class="ion-search"></i> Search project</a>
+            <a href="register.php"><i class="ion-search"></i> Search</a>
         </li>
 
         <li class="nav-item nav-item-has-subnav">

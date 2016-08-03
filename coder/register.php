@@ -29,7 +29,7 @@ $db->connect();
         <link rel="icon" href="../assets/img/favicons/favicon.ico" />
 
         <!-- Google fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Kanit:400,300,200,500&subset=thai,latin' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Kanit:400,300,200,500&subset=thai,latin' rel='stylesheet' type='text/css'>
 
         <!-- Page JS Plugin CSS -->
         <link rel="stylesheet" href="../assets/js/plugins/select2/select2.min.css" />

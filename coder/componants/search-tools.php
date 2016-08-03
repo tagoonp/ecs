@@ -1,4 +1,4 @@
-<form class="navbar-form navbar-left app-search-form" role="search">
+<!-- <form class="navbar-form navbar-left app-search-form" role="search">
     <div class="form-group">
         <div class="input-group">
             <input class="form-control" type="search" id="search-input" placeholder="ค้นหา..." />
@@ -7,4 +7,4 @@
 </span>
         </div>
     </div>
-</form>
+</form> -->
