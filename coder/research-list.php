@@ -33,7 +33,7 @@ if(!isset($_GET['pi_id'])){
         <link rel="icon" href="../assets/img/favicons/favicon.ico" />
 
         <!-- Google fonts -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
+        <link href='https://fonts.googleapis.com/css?family=Kanit:400,300,200,500&subset=thai,latin' rel='stylesheet' type='text/css'>
 
         <!-- Page JS Plugin CSS -->
         <link rel="stylesheet" href="../assets/js/plugins/datatables/jquery.dataTables.min.css" />
@@ -82,7 +82,7 @@ if(!isset($_GET['pi_id'])){
                         					<span class="icon-bar"></span>
                         				</button>
                                 <span class="navbar-page-title">
-                        					<span style="color: #444; font-weight:500;">Register new project </span>
+                        					<span style="color: #444; font-weight:500;">ลงทะเบียนงานวิจัย </span>
                         				</span>
                             </div>
 
@@ -121,14 +121,14 @@ if(!isset($_GET['pi_id'])){
 
                       <div class="row">
                         <div class="col-sm-12 text-left">
-                          <button type="button" name="button" class="btn btn-app-red" onclick="redirect('research.php?pi_id=<?php print $_GET['pi_id']; ?>')"><i class="ion ion-plus"></i> Add new research</button>
+                          <button type="button" name="button" class="btn btn-app-red" onclick="redirect('research.php?pi_id=<?php print $_GET['pi_id']; ?>')"><i class="ion ion-plus"></i> เพิ่มงานวิจัย</button>
                         </div>
                       </div>
                       <div class="row" style="padding-top: 10px;">
                         <div class="col-sm-12">
                           <div class="card">
                             <div class="card-header  bg-blue bg-inverse">
-                                <h4>Reseach list</h4>
+                                <h4>รายการหัวข้อวิจัย</h4>
                             </div>
                             <div class="card-block">
 
@@ -136,9 +136,9 @@ if(!isset($_GET['pi_id'])){
                                 <thead>
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th>Project title</th>
-                                        <!-- <th class="hidden-xs">Register date</th> -->
-                                        <th>Evaluation status</th>
+                                        <th>หัวข้อวิจัย</th>
+                                        <th class="hidden-xs">วันที่ลงทะเบียน</th>
+                                        <th>สถานะการประเมิน</th>
                                         <th class="text-center" style="width: 150px;"></th>
                                     </tr>
                                 </thead>
@@ -156,11 +156,11 @@ if(!isset($_GET['pi_id'])){
                                           <td class="text-center"><?php print $c; ?></td>
                                           <td class="font-500">
                                             <?php
-                                            print $value['rs_title']."<br>"."Register date: ".$value['rs_regdate'];
+                                            print $value['rs_title'];
                                             ?>
                                           </td>
-                                          <!-- <td class="hidden-xs"><?php //print $value['rs_regdate']; ?></td> -->
-                                          <td class="hidden-xs">No</td>
+                                          <td class="hidden-xs"><?php print $value['rs_regdate']; ?></td>
+                                          <td class="hidden-xs"><span style="color: red;">ยังไม่ประเมิน</span></td>
                                           <td class="text-center">
                                               <div class="btn-group">
                                                   <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="ion-edit"></i></button>

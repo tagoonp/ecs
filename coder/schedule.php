@@ -80,7 +80,7 @@ $db->connect();
                         					<span class="icon-bar"></span>
                         				</button>
                                 <span class="navbar-page-title">
-                        					<span style="color: #444; font-weight:500;">ลงทะเบียนงานวิจัย</span>
+                        					<span style="color: #444; font-weight:500;">บันทึกการบริการให้คำปรึกษา</span>
                         				</span>
                             </div>
 
@@ -116,12 +116,26 @@ $db->connect();
 
                     <!-- Page Content -->
                     <div class="container-fluid p-y-md">
-
+                      <form class="js-validation-material-project-regist form-horizontal m-t-sm" action="controller/insert-project.php" method="post" >
                         <div class="row">
-                          <div class="col-sm-4">
+                          <div class="col-sm-6 text-left">
+                            <div class="form-group m-b-0">
+                                  <div class="col-xs-12" style="">
+                                      <button class="btn btn-app-blue" type="submit">บันทึก</button>
+                                      <button class="btn btn-app-light" type="reset">รีเซ็ต</button>
+                                  </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 text-right">
+                            <button class="btn btn-app-red" type="button" onclick="redirect('research-list.php?pi_id=<?php print $_GET['pi_id'];?>')"><i class="fa fa-bars"></i> รายการหัวข้อวิจัย</button>
+                            <button class="btn btn-app-red" type="reset"><i class="fa fa-bars"></i> รายการการให้คำปรึกษา</button>
+                          </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                          <div class="col-sm-6">
                             <div class="card">
                                   <div class="card-header bg-blue bg-inverse">
-                                      <h4>Consultation and Appointments</h4>
+                                      <h4>ผู้ให้คำปรึกษาและบริการ</h4>
                                   </div>
                                   <div class="card-block">
                                     <div class="loading" style="display:none; padding-top: 50px; padding-bottom: 40px;">
@@ -130,7 +144,7 @@ $db->connect();
                                       </div>
                                     </div>
                                     <div class="register">
-                                      <form class="js-validation-material-project-regist form-horizontal m-t-sm" action="controller/insert-project.php" method="post" >
+
                                         <div class="form-group" style="display:none;">
                                           <div class="col-xs-12">
                                               <div class="form-material">
@@ -140,185 +154,283 @@ $db->connect();
                                           </div>
                                         </div>
 
-                                        <h3>Author</h3>
+                                        <!-- <h3>ผู้ให้คำปรึกษา</h3> -->
                                         <div class="form-group" style="padding-top: 10px;">
                                                 <div class="col-xs-12">
-                                                    <div class="form-material">
+                                                    <div class="form-material" style="padding-top: 10px;">
                                                         <select class="js-select2 form-control" id="example2-select2" name="example2-select2" style="width: 100%;" data-placeholder="Choose one..">
                                       										<option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                                           <?php
-                                                          $strSQL = "SELECT * FROM trs_useraccount WHERE acc_type = '5' ORDER BY acc_fname";
+                                                          $strSQL = "SELECT * FROM trs_useraccount a inner join trs_author b on a.acc_id = b.acc_id WHERE  b.aut_status = 'Yes' ORDER BY a.acc_fname";
                                                           $resultAut = $db->select($strSQL,false,true);
                                                           if($resultAut){
                                                             foreach($resultAut as $value){
                                                               ?>
-                                                              <option value="<?php print $value['acc_id'];?>"><?php print $value['acc_fname']." ".$value['acc_lname'];?></option>
+                                                              <option value="<?php print $value['acc_id'];?>"><?php print $value['aut_name'];?></option>
                                                               <?php
                                                             }
                                                           }
                                                           ?>
                                       									</select>
-                                                        <label for="example2-select2" style="font-weight: 500; font-size: 1.1em;">Main author <span style="color: red;">**</span></label>
+                                                        <label for="example2-select2" style="font-weight: 500; font-size: 1.1em;">ผู้ให้คำปรึกษาหลัก <span style="color: red;">**</span></label>
                                                     </div>
                                                 </div>
                                         </div>
 
                                         <div class="form-group">
                                                 <div class="col-xs-12">
-                                                    <div class="form-material">
+                                                    <div class="form-material" style="padding-top: 10px;">
                                                         <select class="js-select2 form-control" id="example2-select2" name="example2-select2" style="width: 100%;" data-placeholder="Choose one..">
                                       										<option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                       										<?php
-                                                          $strSQL = "SELECT * FROM trs_useraccount WHERE acc_type = '5' ORDER BY acc_fname";
-                                                          $resultAut = $db->select($strSQL,false,true);
                                                           if($resultAut){
                                                             foreach($resultAut as $value){
                                                               ?>
-                                                              <option value="<?php print $value['acc_id'];?>"><?php print $value['acc_fname']." ".$value['acc_lname'];?></option>
+                                                              <option value="<?php print $value['acc_id'];?>"><?php print $value['aut_name'];?></option>
                                                               <?php
                                                             }
                                                           }
                                                           ?>
                                       									</select>
-                                                        <label for="example2-select2" style="font-weight: 500; font-size: 1.1em;">Co-author 1</label>
+                                                        <label for="example2-select2" style="font-weight: 500; font-size: 1.1em;">ผู้ให้คำปรึกษาร่วม 1</label>
                                                     </div>
                                                 </div>
                                         </div>
 
                                         <div class="form-group">
                                                 <div class="col-xs-12">
-                                                    <div class="form-material">
+                                                    <div class="form-material" style="padding-top: 10px;">
                                                         <select class="js-select2 form-control" id="example2-select2" name="example2-select2" style="width: 100%;" data-placeholder="Choose one..">
                                       										<option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                                           <?php
-                                                          $strSQL = "SELECT * FROM trs_useraccount WHERE acc_type = '5' ORDER BY acc_fname";
-                                                          $resultAut = $db->select($strSQL,false,true);
                                                           if($resultAut){
                                                             foreach($resultAut as $value){
                                                               ?>
-                                                              <option value="<?php print $value['acc_id'];?>"><?php print $value['acc_fname']." ".$value['acc_lname'];?></option>
+                                                              <option value="<?php print $value['acc_id'];?>"><?php print $value['aut_name'];?></option>
                                                               <?php
                                                             }
                                                           }
                                                           ?>
                                       									</select>
-                                                        <label for="example2-select2" style="font-weight: 500; font-size: 1.1em;">Co-author 2</label>
+                                                        <label for="example2-select2" style="font-weight: 500; font-size: 1.1em;">ผู้ให้คำปรึกษาร่วม 2</label>
                                                     </div>
                                                 </div>
                                         </div>
 
-                                        <h3>Consultation</h3>
-
-                                        <div class="form-group" style="padding-top: 10px;">
-                                          <div class="col-md-12">
-                                              <div class="form-material">
-                                                  <input class="js-datepicker form-control" type="text" id="example-datepicker4" name="example-datepicker4" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
-                                                  <label for="example-datepicker4" style="font-weight: 500; font-size: 1.1em;">Date of consultation <span style="color: red;">**</span></label>
-                                              </div>
-                                          </div>
-                                        </div>
-
                                         <div class="form-group">
-                                          <div class="col-md-12">
-                                              <div class="form-material">
-                                                  <input class="js-masked-time form-control" type="text" id="example-masked2-date1" name="example-masked2-date1" placeholder="HH.MM" />
-                                                  <label for="example-masked2-date1" style="font-weight: 500; font-size: 1.1em;">Start time <span style="color: red;">**</span></label>
-                                                  <p style="font-size: 0.8em; padding-top: 5px; color: red;">
-                                                    <i>* Between 0.01 - 24.00.<br>** Example format: 13.30</i>
-                                                  </p>
-                                              </div>
+                                          <div class="col-xs-12">
+                                              <label for="register6-email" style="font-weight: 500; font-size: 1.1em;">Service requested  <span style="color: red;">**</span></label>
                                           </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                          <div class="col-md-12">
-                                              <div class="form-material">
-                                                  <input class="js-masked-time form-control" type="text" id="example-masked2-date1" name="example-masked2-date1" placeholder="HH.MM" />
-                                                  <label for="example-masked2-date1" style="font-weight: 500; font-size: 1.1em;">End time <span style="color: red;">**</span></label>
-                                                  <p style="font-size: 0.8em; padding-top: 5px; color: red;">
-                                                    <i>* Between 0.01 - 24.00.<br>** Example format: 24.30</i>
-                                                  </p>
-                                              </div>
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-1" value="1" /><span></span> Propersal Development
+                                                </label>
                                           </div>
-                                        </div>
 
+                                          <div class="col-xs-4">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-2" value="1" /><span></span> Data Analysis
+                                                </label>
+                                          </div>
 
-                                        <div class="form-group m-b-0">
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-3" value="1" /><span></span> Proof Reading
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-4" value="1" /><span></span> Data Management
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-5" value="1" /><span></span> Report writing
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-6" id="cb1-6" value="1" /><span></span> Sample size
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb1-7" value="1" /><span></span> Other
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-12">
+                                            <div class="form-group">
                                               <div class="col-xs-12">
-                                                  <button class="btn btn-app-blue" type="submit">Submit</button>
-                                                  <button class="btn btn-app-light" type="reset">Reset</button>
+                                                  <div class="form-material">
+                                                      <input class="form-control" type="text" id="txt-cb1-otr" name="txt-cb1-otr" placeholder="Enter other service requested...">
+                                                  </div>
                                               </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                      </form>
+
+                                        <div class="form-group">
+                                          <div class="col-xs-12">
+                                              <label for="register6-email"  style="font-weight: 500; font-size: 1.1em;">Purpose  <span style="color: red;">**</span></label>
+                                          </div>
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox" name="cb2-1" value="1" /><span></span> Part of on-ging research
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb2-2" value="1" /><span></span> Resident's paper
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb2-3" value="1" /><span></span> R2R project
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb2-4" value="1" /><span></span> For promotion
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb2-5" value="1" /><span></span> Other
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-12">
+                                            <div class="form-group">
+                                              <div class="col-xs-12">
+                                                  <div class="form-material">
+                                                      <input class="form-control" type="text" id="txt-cb2-otr" name="txt-cb2-otr" placeholder="Enter other purpose...">
+                                                  </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <div class="col-xs-12">
+                                              <label for="register6-email"  style="font-weight: 500; font-size: 1.1em;">Epidemiology unit's involvement </label>
+                                          </div>
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb3-1" value="1" /><span></span> Joint research
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb3-2" value="1" /><span></span> Authorship
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb3-3" value="1" /><span></span> Acknowledgement
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb3-4" value="1" /><span></span> On-time basis only
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                                <label class="css-input css-checkbox css-checkbox-info">
+                                                  <input type="checkbox"  name="cb3-5" value="1" /><span></span> Other
+                                                </label>
+                                          </div>
+
+                                          <div class="col-xs-12">
+                                            <div class="form-group">
+                                              <div class="col-xs-12">
+                                                  <div class="form-material">
+                                                      <input class="form-control" type="text" id="txt-cb3-otr" name="txt-cb3-otr" placeholder="Enter other involvement...">
+                                                  </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+
                                     </div>
                                   </div>
                               </div>
                           </div>
                           <!-- End col-md-4 -->
-                          <div class="col-sm-8">
+                          <div class="col-sm-6">
                             <div class="card">
                               <div class="card-header bg-teal bg-inverse">
-                                  <h4>Consultation service log</h4>
+                                  <h4>ข้อมูลการให้คำปรึกษา</h4>
                                   <ul class="card-actions">
                                       <li>
                                           <button type="button"><i class="ion-more"></i></button>
                                       </li>
                                   </ul>
                               </div>
-                              <div class="card-block">
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-header-bg">
-                                  <thead>
-                                      <tr>
-                                          <th class="text-center"></th>
-                                          <th>Author name</th>
-                                          <th class="hidden-xs">Date - Time</th>
-                                          <th class="hidden-xs w-20">Durations</th>
-                                          <th class="hidden-xs w-20">Appointment</th>
-                                          <th class="text-center" style="width: 120px;"></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                    $strSQL = "SELECT * FROM trs_useraccount a inner join trs_institute b on a.acc_instituteid=b.inst_id
-                                              left join trs_prefix c on a.acc_prefixid=c.prefix_id
-                                              WHERE a.acc_type = '4'
-                                              ORDER BY a.acc_regdate DESC";
-                                    $resultPI = $db->select($strSQL,false,true);
-                                    if($resultPI){
-                                      $c = 1;
-                                      foreach ($resultPI as $value) {
-                                        ?>
-                                        <tr>
-                                            <td class="text-center"><?php print $c; ?></td>
-                                            <td class="font-500">
-                                              <?php
-                                              if(($value['acc_prefixid']!='') || ($value['acc_prefixid']!=null)){
-                                                print $value['prefix_name'];
-                                              }
-                                              print $value['acc_fname']." ".$value['acc_lname'];
-                                              ?>
-                                            </td>
-                                            <td class="hidden-xs"><?php print $value['inst_name']; ?></td>
-                                            <td class="hidden-xs"><?php print $value['acc_phone']; ?></td>
-                                            <td class="hidden-xs"><?php print $value['acc_phone']; ?></td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="ion-edit"></i></button>
-                                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Add appointment" onclick="redirect('schedule.php?pi_id=<?php print $value['acc_id'];?>')"><i class="ion-calendar"></i></button>
-                                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $c++;
-                                      }
-                                    }
-                                    ?>
+                              <div class="card-block" style="padding-top: 20px;">
+                                <!-- <h3>Consultation</h3> -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group" style="padding-top: 10px;">
+                                      <div class="col-md-12">
+                                          <div class="form-material">
+                                              <input class="js-datepicker form-control" type="text" id="example-datepicker4" name="example-datepicker4" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+                                              <label for="example-datepicker4" style="font-weight: 500; font-size: 1.1em;">วันที่เข้ารับคำปรึกษา <span style="color: red;">**</span></label>
+                                          </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <div class="col-md-10" style="padding-top: 0px;">
+                                          <div class="form-material">
+                                              <input class="js-masked-time form-control" type="text" id="example-masked2-date1" name="example-masked2-date1" placeholder="HH.MM" readonly="" />
+                                              <label for="example-masked2-date1" style="font-weight: 500; font-size: 1.1em;">เวลาเริ่มต้น <span style="color: red;">**</span></label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-2" >
+                                        <div class="text-right">
+                                          <button type="button" class="btn btn-app-red" name="button"><i class="ion-android-alarm-clock"></i></button>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <div class="col-md-10" style="padding-top: 0px;">
+                                          <div class="form-material">
+                                              <input class="js-masked-time form-control" type="text" id="example-masked2-date1" name="example-masked2-date1" placeholder="HH.MM" readonly="" />
+                                              <label for="example-masked2-date1" style="font-weight: 500; font-size: 1.1em;">เวลาสิ้นสุด <span style="color: red;">**</span></label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-2" >
+                                        <div class="text-right">
+                                          <button type="button" class="btn btn-app-red" name="button"><i class="ion-android-alarm-clock"></i></button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
 
 
-                                    </tbody>
-                                  </table>
+
+
+                                </div>
+
+
                               </div>
+                              <!-- End block -->
                             </div>
 
                           </div>
@@ -329,6 +441,7 @@ $db->connect();
 
                         </div>
                         <!-- End row -->
+                      </form>
                     </div>
                     <!-- End Page Content -->
 
